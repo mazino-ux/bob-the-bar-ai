@@ -1,6 +1,11 @@
-import express from 'express';
+import { Router } from 'express';
+import bottleRoutes from './bottle.routes';
+import collectionRoutes from './collection.routes';
 
+const router = Router();
 
-const V1Router = express.Router();
+// V1 API ROUTES
+router.use('/bottles', bottleRoutes);
+router.use('/collection', collectionRoutes);
 
-export default V1Router;
+export default router;

@@ -18,7 +18,8 @@ export const config = {
   
   // AI Services
   DEEPSEEK_API_KEY: process.env.DEEPSEEK_API_KEY,
-  DEEPSEEK_API_URL: process.env.DEEPSEEK_API_URL
+  DEEPSEEK_API_URL: process.env.DEEPSEEK_API_URL,
+  SIMILARITY_THRESHOLD: process.env.SIMILARITY_THRESHOLD || 0.8
 };
 
 // Type for our config
