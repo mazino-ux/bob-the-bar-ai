@@ -1,0 +1,33 @@
+# NODE MODULES
+node_modules/
+
+# ENVIRONMENT VARIABLES
+.env
+
+# LOG FILES
+*.log
+
+# MACOS SYSTEM FILES
+.DS_Store
+
+# BUILD OUTPUT
+dist/
+build/
+
+# COVERAGE REPORTS
+coverage/
+
+# TEMPORARY FILES
+*.tmp
+*.swp
+
+# IDE FILES
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# PACKAGE LOCK FILES
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
