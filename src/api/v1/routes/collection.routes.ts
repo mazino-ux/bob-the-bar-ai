@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { CollectionController } from '../controllers/CollectionController';
-import { validateRequest } from '../../../middleware/validateRequest';
-import { analyzeCollectionSchema } from '../../../validations/collection.validation';
+import { analyzeCollectionSchema, validateRequest } from '../../../middleware/validateRequest';
 
 const router = Router();
 
