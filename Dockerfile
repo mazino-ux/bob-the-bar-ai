@@ -18,8 +18,8 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Copy built files
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /dist ./dist
+COPY --from=builder /node_modules ./node_modules
 
 # Copy only necessary files for production
 COPY package*.json ./
