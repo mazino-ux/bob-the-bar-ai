@@ -22,7 +22,7 @@ COPY --from=builder /app/node_modules ./node_modules
 
 # Copy only necessary files for production
 COPY package*.json ./
-COPY .env.production .env
+COPY .env.ts .env
 
 # Expose port and start
 EXPOSE 5000
