@@ -13,7 +13,7 @@ export const config = {
   CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:3000',
   
   // Database
-  MONGO_URI: process.env.MONGO_URI || 'mongodb://localhost:27017/bob-the-bar-ai',
+  MONGO_URI: process.env.MONGO_URI || "ongodb+srv://root:bobAdmin0604@bob-cluster.jwui1tu.mongodb.net/bob-the-bar-ai?retryWrites=true&w=majority&appName=bob-cluster",
   MONGO_DB_NAME: process.env.MONGO_DB_NAME || 'bob-the-bar-ai',
   
   // AI Services
