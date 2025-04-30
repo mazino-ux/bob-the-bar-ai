@@ -1,27 +1,29 @@
 # STAGE 1: Build
-FROM node:20-alpine@sha256:c628bdc7ebc7f95b1b23249a445eb415ce68ae9def8b68364b35ee15e3065b0f AS builder
+FROM node:20-alpine as builder
+
 WORKDIR /app
 
-# Install dependencies
+# Copy package files first for better caching
 COPY package*.json ./
 RUN npm install
 
-# Copy source files
+# Copy all other files
 COPY . .
 
-# Build TypeScript
+# Build the application
 RUN npm run build
 
-# STAGE 2: Production
-FROM node:20-alpine@sha256:c628bdc7ebc7f95b1b23249a445eb415ce68ae9def8b68364b35ee15e3065b0f
+# STAGE 2: Run
+FROM node:20-alpine
 WORKDIR /app
 
-# Only copy built output and production dependencies
+# Copy built files
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
+
+# Copy only necessary files for production
 COPY package*.json ./
 
-# .env file should be mounted at runtime or handled via docker-compose
-
+# Expose port and start
 EXPOSE 5000
 CMD ["node", "dist/server.js"]
