@@ -1,6 +1,5 @@
 # STAGE 1: Build
 FROM node:20-alpine as builder
-
 WORKDIR /app
 
 # Copy package files first for better caching
@@ -17,9 +16,9 @@ RUN npm run build
 FROM node:20-alpine
 WORKDIR /app
 
-# Copy built files
-COPY --from=builder /dist ./dist
-COPY --from=builder /node_modules ./node_modules
+# ✅ FIXED: Copy built files from correct path
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
 
 # Copy only necessary files for production
 COPY package*.json ./
