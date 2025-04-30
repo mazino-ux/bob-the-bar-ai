@@ -1,29 +1,28 @@
 # STAGE 1: Build
-FROM node:20-alpine as builder
+FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Copy package files first for better caching
+# Install dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy all other files
+# Copy source files
 COPY . .
 
-# Build the application
+# Build TypeScript
 RUN npm run build
 
-# STAGE 2: Run
+# STAGE 2: Production
 FROM node:20-alpine
 WORKDIR /app
 
-# ✅ FIXED: Copy built files from correct path
+# Only copy built output and production dependencies
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
-
-# Copy only necessary files for production
 COPY package*.json ./
-COPY .env.ts .env
 
-# Expose port and start
+# Copy .env if present (optional, or mount at runtime)
+COPY .env .env
+
 EXPOSE 5000
 CMD ["node", "dist/server.js"]
